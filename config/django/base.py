@@ -8,10 +8,12 @@ env.read_env(os.path.join(BASE_DIR, ".env"))
 THIRD_PARTY_APPS = [
     "corsheaders",
     "debug_toolbar",
+    'rest_framework',
 ]
 
 LOCAL_APPS = [
-    "apps.account.apps.AccountConfig"
+    "apps.account.apps.AccountConfig",
+    "apps.api.apps.ApiConfig",
 ]
 
 INSTALLED_APPS = [
