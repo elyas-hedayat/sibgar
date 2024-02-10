@@ -4,10 +4,11 @@ from rest_framework.views import APIView
 
 from .models import Profile
 from .selectors import profile_list, get_profile
+from ..api.mixins import ApiAuthMixin
 from ..api.pagination import LimitOffsetPagination, get_paginated_response_context
 
 
-class ProfileListApi(APIView):
+class ProfileListApi(ApiAuthMixin, APIView):
     class Pagination(LimitOffsetPagination):
         default_limit = 10
 
@@ -31,7 +32,7 @@ class ProfileListApi(APIView):
         )
 
 
-class ProfileDetailApi(APIView):
+class ProfileDetailApi(ApiAuthMixin, APIView):
     class OutputSerializer(serializers.ModelSerializer):
         user_id = serializers.IntegerField(source="user.id")
         email = serializers.EmailField(source="user.email")

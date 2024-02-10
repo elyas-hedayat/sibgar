@@ -15,5 +15,5 @@ class UserManager(BaseUserManager):
         user = self.create_user(phone_number=phone_number, password=password)
         user.is_admin = True
         user.is_superuser = True
-        user.save(using=self._d)
+        user.save(using=self._db)
         return user

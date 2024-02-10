@@ -8,12 +8,14 @@ env.read_env(os.path.join(BASE_DIR, ".env"))
 THIRD_PARTY_APPS = [
     "corsheaders",
     "debug_toolbar",
-    'rest_framework',
+    "rest_framework",
+    "rest_framework_simplejwt",
 ]
 
 LOCAL_APPS = [
     "apps.account.apps.AccountConfig",
     "apps.api.apps.ApiConfig",
+    "apps.authentication.apps.AuthenticationConfig",
 ]
 
 INSTALLED_APPS = [
@@ -107,3 +109,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "account.User"
+
+# REST_FRAMEWORK
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
