@@ -1,3 +1,4 @@
+from drf_spectacular.utils import extend_schema
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -20,6 +21,10 @@ class ProfileListApi(ApiAuthMixin, APIView):
             model = Profile
             fields = ("user_id", "email", "id", "first_name", "last_name", "age", "gender", "starting_date")
 
+    @extend_schema(
+        responses={status.HTTP_200_OK: OutPutSerializer},
+        description="List All Users Profile"
+    )
     def get(self, request):
         query = profile_list()
 
@@ -33,7 +38,7 @@ class ProfileListApi(ApiAuthMixin, APIView):
 
 
 class ProfileDetailApi(ApiAuthMixin, APIView):
-    class OutputSerializer(serializers.ModelSerializer):
+    class OutPutSerializer(serializers.ModelSerializer):
         user_id = serializers.IntegerField(source="user.id")
         email = serializers.EmailField(source="user.email")
 
@@ -41,9 +46,13 @@ class ProfileDetailApi(ApiAuthMixin, APIView):
             model = Profile
             fields = ("user_id", "email", "id", "first_name", "last_name", "age", "gender", "starting_date")
 
+    @extend_schema(
+        responses={status.HTTP_200_OK: OutPutSerializer},
+        description="Return Requested User Profile"
+    )
     def get(self, request):
         query = get_profile(_user=request.user)
 
-        data = self.OutputSerializer(query).data
+        data = self.OutPutSerializer(query).data
 
         return Response(data, status=status.HTTP_200_OK)

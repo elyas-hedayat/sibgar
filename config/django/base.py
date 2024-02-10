@@ -10,6 +10,7 @@ THIRD_PARTY_APPS = [
     "debug_toolbar",
     "rest_framework",
     "rest_framework_simplejwt",
+    "drf_spectacular",
 ]
 
 LOCAL_APPS = [
@@ -112,7 +113,16 @@ AUTH_USER_MODEL = "account.User"
 
 # REST_FRAMEWORK
 REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'SibGar  Project API',
+    'DESCRIPTION': 'SibGar: Online Platform For Quit Smoking',
+    'VERSION': '0.0.1',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
