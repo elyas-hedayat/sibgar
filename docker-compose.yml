@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+
+  db:
+    image: postgres:14.1
+    container_name: sibgar_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=sibgar
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      - redis
+      - db
+
+  redis:
+    image: redis:7
+    container_name: sibgar_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  postgres-data:
+  redis-data:
+  app:

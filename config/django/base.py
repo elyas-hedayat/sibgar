@@ -127,5 +127,15 @@ SPECTACULAR_SETTINGS = {
     # OTHER SETTINGS
 }
 
+# Redis
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': env("REDIS_LOCATION", default="redis://localhost:6379"),
+    }
+}
+CACHE_TTL = 1500
+
 from config.settings import cors  # noqa
 from config.settings import jwt  # noqa
+from config.settings import sentry  # noqa
