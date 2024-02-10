@@ -126,3 +126,6 @@ SPECTACULAR_SETTINGS = {
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS
 }
+
+from config.settings import cors  # noqa
+from config.settings import jwt  # noqa
