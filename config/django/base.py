@@ -17,6 +17,9 @@ LOCAL_APPS = [
     "apps.account.apps.AccountConfig",
     "apps.api.apps.ApiConfig",
     "apps.authentication.apps.AuthenticationConfig",
+    "apps.common.apps.CommonConfig",
+    "apps.tasks.apps.TasksConfig",
+    "apps.blog.apps.BlogConfig",
 ]
 
 INSTALLED_APPS = [

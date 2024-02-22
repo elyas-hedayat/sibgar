@@ -1,3 +1,4 @@
-1.Add JWT
-2.Add swagger config
-3.Add Register/ChangePassword/ForgetPasswordSendOtp/VerifyForgetPassword/ForgetPassword/Logout
+2.Add Register/ChangePassword/ForgetPasswordSendOtp/VerifyForgetPassword/ForgetPassword/Logout
+3.Add Readme content
+4.Add ci/cd piplines
+5.Add Makefile
